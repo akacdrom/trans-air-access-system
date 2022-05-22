@@ -1,26 +1,24 @@
 import { ConcreteZone } from "./ConcreteZone";
-
 export class LoadUnloadZone extends ConcreteZone {
-  zoneEmployeeNumber: number | undefined;
   constructor(zoneName: string) {
     super();
     this.zoneName = zoneName;
-    if (this.zoneEmployeeNumber === undefined) {
-      this.zoneEmployeeNumber = 0;
+    if (this.loadUnloadEmployeeNumber === undefined) {
+      this.loadUnloadEmployeeNumber = 0;
     }
   }
   enterZone(): number {
-    if (this.zoneEmployeeNumber < 5) {
+    if (this.loadUnloadEmployeeNumber < 5) {
       console.log(`Access granted, entered the ${this.zoneName} zone`);
-      this.zoneEmployeeNumber++;
-      return this.zoneEmployeeNumber;
+      this.loadUnloadEmployeeNumber++;
+      return this.loadUnloadEmployeeNumber;
     } else {
       throw new Error(
-        `zone has ${this.zoneEmployeeNumber} number of employees.`
+        `Limit is reached. Zone has ${this.sortingEmployeeNumber} number of employees.`
       );
     }
   }
-  getZoneEmployeeNumber(): number {
-    return this.zoneEmployeeNumber;
+  leaveZone(): void {
+    this.loadUnloadEmployeeNumber--;
   }
 }

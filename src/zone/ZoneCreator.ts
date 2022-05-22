@@ -13,36 +13,34 @@ export class ZoneCreator {
   }): Zone {
     if (
       zone.zoneName === "AirStripZoneState" &&
-      zone.zoneEmployeeCard === "airstrip"
+      (zone.zoneEmployeeCard === "airstrip" ||
+        zone.zoneEmployeeCard === "manager")
     ) {
       const airStripZone = new AirStripZone(zone.zoneName);
-      airStripZone.enterZone();
       return airStripZone;
     } else if (
       zone.zoneName === "SortingZoneState" &&
       (zone.zoneEmployeeCard === "sorter" ||
-        zone.zoneEmployeeCard === "airstrip")
+        zone.zoneEmployeeCard === "airstrip" ||
+        zone.zoneEmployeeCard === "manager")
     ) {
       const sortingZone = new SortingZone(zone.zoneName);
-      sortingZone.enterZone();
       return sortingZone;
     } else if (
       zone.zoneName === "StorageZoneState" &&
-      zone.zoneEmployeeCard === "sorter"
+      (zone.zoneEmployeeCard === "sorter" ||
+        zone.zoneEmployeeCard === "manager")
     ) {
       const storageZone = new StorageZone(zone.zoneName);
-      storageZone.enterZone();
       return storageZone;
     } else if (zone.zoneName === "LoadUnloadZoneState") {
       const loadUnloadZone = new LoadUnloadZone(zone.zoneName);
-      loadUnloadZone.enterZone();
       return loadUnloadZone;
     } else if (zone.zoneName === "OutsideZoneState") {
       const outsideZone = new OutsideZone(zone.zoneName);
-      outsideZone.enterZone();
       return outsideZone;
     } else {
-      throw new Error("Access denied!");
+      throw new Error("Access denied!").message.toUpperCase();
     }
   }
 }
