@@ -11,7 +11,7 @@ export class LoadUnloadZone extends ConcreteZone {
   }
   enterZone(): number {
     if (this.zoneEmployeeNumber < 5) {
-      console.log(`entered the ${this.zoneName} zone`);
+      console.log(`Access granted, entered the ${this.zoneName} zone`);
       this.zoneEmployeeNumber++;
       return this.zoneEmployeeNumber;
     } else {

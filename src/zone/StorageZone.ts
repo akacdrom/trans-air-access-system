@@ -2,14 +2,16 @@ import { ConcreteZone } from "./ConcreteZone";
 
 export class StorageZone extends ConcreteZone {
   zoneEmployeeNumber: number | undefined;
-  constructor() {
+  constructor(zoneName: string) {
     super();
+    this.zoneName = zoneName;
     if (this.zoneEmployeeNumber === undefined) {
       this.zoneEmployeeNumber = 0;
     }
   }
   enterZone(): number {
     if (this.zoneEmployeeNumber < 3) {
+      console.log(`Access granted, entered the ${this.zoneName} zone`);
       this.zoneEmployeeNumber++;
       return this.zoneEmployeeNumber;
     } else {

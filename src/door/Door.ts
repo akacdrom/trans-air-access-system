@@ -1,10 +1,10 @@
-import { AirStripZone } from "../AirStripZone";
-import { SortingZone } from "../SortingZone";
-import { StorageZone } from "../StorageZone";
-import { LoadUnloadZone } from "../LoadUnloadZone";
-import { OutsideZone } from "../OutsideZone";
+import { AirStripZone } from "../zone/AirStripZone";
+import { SortingZone } from "../zone/SortingZone";
+import { StorageZone } from "../zone/StorageZone";
+import { LoadUnloadZone } from "../zone/LoadUnloadZone";
+import { OutsideZone } from "../zone/OutsideZone";
 
-import { CardInTheZone } from "../ConcreteZone";
+import { Zone } from "../zone/ConcreteZone";
 
 interface State {
   door: Door;
@@ -85,14 +85,14 @@ export class LoadUnloadZoneState implements State {
     throw new Error("You cannot use this door from you state");
   }
   doorOne() {
-    console.log("Entering into the Outside zone");
+    console.log("Trying to open the door of the Outside zone");
     this.door.setState(this.door.outsideZoneState);
   }
   doorTwo() {
     throw new Error("You cannot use this door from you state");
   }
   doorThree() {
-    console.log("Entering into the Sorting zone");
+    console.log("Trying to open the door of the Sorting zone");
     this.door.setState(this.door.sortingZoneState);
   }
   doorFour() {
@@ -121,7 +121,7 @@ export class SortingZoneState implements State {
     throw new Error("You cannot use this door from you state");
   }
   doorTwo() {
-    console.log("Entering into the Unload/Load zone");
+    console.log("Trying to open the door of the Unload/Load zone");
     this.door.setState(this.door.loadUnloadZoneState);
   }
   doorThree() {
@@ -131,11 +131,11 @@ export class SortingZoneState implements State {
     throw new Error("You cannot use this door from you state");
   }
   doorFive() {
-    console.log("Entering into the AirStrip zone");
+    console.log("Trying to open the door of the Air-Strip zone");
     this.door.setState(this.door.airStripZoneState);
   }
   doorSix() {
-    console.log("Entering into the Storage zone");
+    console.log("Trying to open the door of the Storage zone");
     this.door.setState(this.door.storageZoneState);
   }
   doorSeven() {
@@ -161,7 +161,7 @@ export class AirStripZoneState implements State {
     throw new Error("You cannot use this door from you state");
   }
   doorFour() {
-    console.log("Entering into the Sorting zone");
+    console.log("Trying to open the door of the Sorting zone");
     this.door.setState(this.door.sortingZoneState);
   }
   doorFive() {
@@ -202,7 +202,7 @@ export class StorageZoneState implements State {
     throw new Error("You cannot use this door from you state");
   }
   doorSeven() {
-    console.log("Entering into the Sorting zone");
+    console.log("Trying to open the door of the Sorting zone");
     this.door.setState(this.door.sortingZoneState);
   }
 }

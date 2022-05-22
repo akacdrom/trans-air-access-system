@@ -10,15 +10,9 @@ export class OutsideZone extends ConcreteZone {
     }
   }
   enterZone(): number {
-    if (this.zoneEmployeeNumber < 3) {
-      console.log(`entered the ${this.zoneName} zone`);
-      this.zoneEmployeeNumber++;
-      return this.zoneEmployeeNumber;
-    } else {
-      throw new Error(
-        `zone has ${this.zoneEmployeeNumber} number of employees.`
-      );
-    }
+    console.log(`Access granted, entered the ${this.zoneName} zone`);
+    this.zoneEmployeeNumber++;
+    return this.zoneEmployeeNumber;
   }
   getZoneEmployeeNumber(): number {
     return this.zoneEmployeeNumber;

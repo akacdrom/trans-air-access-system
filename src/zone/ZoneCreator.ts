@@ -4,41 +4,45 @@ import { StorageZone } from "./StorageZone";
 import { LoadUnloadZone } from "./LoadUnloadZone";
 import { OutsideZone } from "./OutsideZone";
 
-import { CardInTheZone } from "./ConcreteZone";
+import { Zone } from "./ConcreteZone";
 
 export class ZoneCreator {
   static createZone(zone: {
     zoneName: string;
     zoneEmployeeCard: string;
-  }): CardInTheZone {
+  }): Zone {
     if (
       zone.zoneName === "AirStripZoneState" &&
       zone.zoneEmployeeCard === "airstrip"
     ) {
-      console.log("airstrip zone");
       const airStripZone = new AirStripZone(zone.zoneName);
+      airStripZone.enterZone();
       return airStripZone;
     } else if (
       zone.zoneName === "SortingZoneState" &&
       (zone.zoneEmployeeCard === "sorter" ||
         zone.zoneEmployeeCard === "airstrip")
     ) {
-      console.log("sorting zone");
-      return new SortingZone();
+      const sortingZone = new SortingZone(zone.zoneName);
+      sortingZone.enterZone();
+      return sortingZone;
     } else if (
       zone.zoneName === "StorageZoneState" &&
       zone.zoneEmployeeCard === "sorter"
     ) {
-      console.log("storage zone");
-      return new StorageZone();
+      const storageZone = new StorageZone(zone.zoneName);
+      storageZone.enterZone();
+      return storageZone;
     } else if (zone.zoneName === "LoadUnloadZoneState") {
-      console.log("load unload zone");
-      return new LoadUnloadZone(zone.zoneName);
+      const loadUnloadZone = new LoadUnloadZone(zone.zoneName);
+      loadUnloadZone.enterZone();
+      return loadUnloadZone;
     } else if (zone.zoneName === "OutsideZoneState") {
-      console.log("outside zone");
-      return new OutsideZone(zone.zoneName);
+      const outsideZone = new OutsideZone(zone.zoneName);
+      outsideZone.enterZone();
+      return outsideZone;
     } else {
-      throw new Error("Zone not found!");
+      throw new Error("Access denied!");
     }
   }
 }

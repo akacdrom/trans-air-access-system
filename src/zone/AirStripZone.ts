@@ -11,7 +11,7 @@ export class AirStripZone extends ConcreteZone {
   }
   enterZone(): number {
     if (this.zoneEmployeeNumber < 3) {
-      console.log(`entered the ${this.zoneName} zone`);
+      console.log(`Access granted, entered the ${this.zoneName} zone`);
       this.zoneEmployeeNumber++;
       return this.zoneEmployeeNumber;
     } else {
