@@ -8,11 +8,10 @@ export class StorageZone extends ConcreteZone {
       this.storageEmployeeNumber = 0;
     }
   }
-  enterZone(): number {
+  enterZone(): void {
     if (this.storageEmployeeNumber < 3) {
       console.log(`Access granted, entered the ${this.zoneName} zone`);
       this.storageEmployeeNumber++;
-      return this.storageEmployeeNumber;
     } else {
       throw new Error(
         `Limit is reached. Zone has ${this.sortingEmployeeNumber} number of employees.`

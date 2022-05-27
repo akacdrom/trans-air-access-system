@@ -8,11 +8,10 @@ export class AirStripZone extends ConcreteZone {
       this.airStripEmployeeNumber = 0;
     }
   }
-  enterZone(): number {
+  enterZone(): void {
     if (this.airStripEmployeeNumber < 3) {
       console.log(`Access granted, entered the ${this.zoneName} zone`);
       this.airStripEmployeeNumber++;
-      return this.airStripEmployeeNumber;
     } else {
       throw new Error(
         `Limit is reached. Zone has ${this.sortingEmployeeNumber} number of employees.`
