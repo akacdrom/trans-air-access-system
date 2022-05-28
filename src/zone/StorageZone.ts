@@ -1,24 +1,19 @@
 import { ConcreteZone } from "./ConcreteZone";
+import { StorageZoneLogger } from "../logger/StorageZoneLogger";
 
 export class StorageZone extends ConcreteZone {
   constructor(zoneName: string) {
     super();
     this.zoneName = zoneName;
-    if (this.storageEmployeeNumber === undefined) {
-      this.storageEmployeeNumber = 0;
-    }
   }
   enterZone(): void {
-    if (this.storageEmployeeNumber < 3) {
+    const storageZoneLogger = new StorageZoneLogger();
+    if (storageZoneLogger.storageEmployeeNumber < 3) {
       console.log(`Access granted, entered the ${this.zoneName} zone`);
-      this.storageEmployeeNumber++;
     } else {
       throw new Error(
-        `Limit is reached. Zone has ${this.sortingEmployeeNumber} number of employees.`
+        `Limit is reached. Zone has ${storageZoneLogger.storageEmployeeNumber} number of employees.`
       );
     }
-  }
-  leaveZone(): void {
-    this.storageEmployeeNumber--;
   }
 }

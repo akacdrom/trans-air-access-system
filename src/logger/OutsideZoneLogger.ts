@@ -10,7 +10,6 @@ export class OutsideZoneLogger implements EmployeeInteraction {
     cardType: string;
   }): void {
     this.outsideEmployeeNumber++;
-
     this.outsideZoneEmployeeCardInfo.push(cardInfo);
   }
   removeEmployee(cardNo: number): void {

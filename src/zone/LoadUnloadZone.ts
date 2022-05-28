@@ -1,5 +1,6 @@
 import { ConcreteZone } from "./ConcreteZone";
 import { LoadUnloadZoneLogger } from "../logger/LoadUnloadZoneLogger";
+
 export class LoadUnloadZone extends ConcreteZone {
   constructor(zoneName: string) {
     super();
@@ -14,8 +15,5 @@ export class LoadUnloadZone extends ConcreteZone {
         `Limit is reached. Zone has ${loadUnloadZoneLogger.loadUnloadEmployeeNumber} number of employees.`
       );
     }
-  }
-  leaveZone(): void {
-    this.loadUnloadEmployeeNumber--;
   }
 }

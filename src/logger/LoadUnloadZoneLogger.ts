@@ -12,14 +12,17 @@ export class LoadUnloadZoneLogger implements EmployeeInteraction {
     this.loadUnloadEmployeeNumber++;
     this.loadUnloadZoneEmployeeCardInfo.push(cardInfo);
   }
-  removeEmployee(): void {
-    if (
-      this.loadUnloadEmployeeNumber === undefined ||
-      this.loadUnloadEmployeeNumber === 0
-    ) {
+  removeEmployee(cardNo: number): void {
+    if (this.loadUnloadEmployeeNumber === 0) {
       throw new Error("There is no employee to remove").message.toUpperCase();
     } else {
       this.loadUnloadEmployeeNumber--;
+      this.loadUnloadZoneEmployeeCardInfo.forEach((value, index) => {
+        if (value.cardNo === cardNo) {
+          this.loadUnloadZoneEmployeeCardInfo.splice(index, 1);
+          console.log(index);
+        }
+      });
     }
   }
   getEmployee(): Card[] {

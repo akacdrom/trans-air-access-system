@@ -1,24 +1,19 @@
 import { ConcreteZone } from "./ConcreteZone";
+import { AirStripZoneLogger } from "../logger/AirStripZoneLogger";
 
 export class AirStripZone extends ConcreteZone {
   constructor(zoneName: string) {
     super();
     this.zoneName = zoneName;
-    if (this.airStripEmployeeNumber === undefined) {
-      this.airStripEmployeeNumber = 0;
-    }
   }
   enterZone(): void {
-    if (this.airStripEmployeeNumber < 3) {
+    const airStripZoneLogger = new AirStripZoneLogger();
+    if (airStripZoneLogger.airStripEmployeeNumber < 3) {
       console.log(`Access granted, entered the ${this.zoneName} zone`);
-      this.airStripEmployeeNumber++;
     } else {
       throw new Error(
-        `Limit is reached. Zone has ${this.sortingEmployeeNumber} number of employees.`
+        `Limit is reached. Zone has ${airStripZoneLogger.airStripEmployeeNumber} number of employees.`
       );
     }
-  }
-  leaveZone(): void {
-    this.airStripEmployeeNumber--;
   }
 }

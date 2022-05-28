@@ -2,7 +2,7 @@ import { Card, EmployeeInteraction } from "./EmployeeInteraction";
 
 export class StorageZoneLogger implements EmployeeInteraction {
   storageZoneEmployeeCardInfo: Card[] = [];
-  storageEmployeeNumber: number | undefined;
+  storageEmployeeNumber = 0;
 
   addEmployee(cardInfo: {
     cardNo: number;
@@ -16,14 +16,17 @@ export class StorageZoneLogger implements EmployeeInteraction {
     }
     this.storageZoneEmployeeCardInfo.push(cardInfo);
   }
-  removeEmployee(): void {
-    if (
-      this.storageEmployeeNumber === undefined ||
-      this.storageEmployeeNumber === 0
-    ) {
+  removeEmployee(cardNo: number): void {
+    if (this.storageEmployeeNumber === 0) {
       throw new Error("There is no employee to remove").message.toUpperCase();
     } else {
       this.storageEmployeeNumber--;
+      this.storageZoneEmployeeCardInfo.forEach((value, index) => {
+        if (value.cardNo === cardNo) {
+          this.storageZoneEmployeeCardInfo.splice(index, 1);
+          console.log(index);
+        }
+      });
     }
   }
   getEmployee(): Card[] {

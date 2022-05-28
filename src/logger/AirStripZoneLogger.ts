@@ -2,28 +2,27 @@ import { Card, EmployeeInteraction } from "./EmployeeInteraction";
 
 export class AirStripZoneLogger implements EmployeeInteraction {
   airStripZoneEmployeeCardInfo: Card[] = [];
-  airStripEmployeeNumber: number | undefined;
+  airStripEmployeeNumber = 0;
 
   addEmployee(cardInfo: {
     cardNo: number;
     cardName: string;
     cardType: string;
   }): void {
-    if (this.airStripEmployeeNumber === undefined) {
-      this.airStripEmployeeNumber = 1;
-    } else {
-      this.airStripEmployeeNumber++;
-    }
+    this.airStripEmployeeNumber++;
     this.airStripZoneEmployeeCardInfo.push(cardInfo);
   }
-  removeEmployee(): void {
-    if (
-      this.airStripEmployeeNumber === undefined ||
-      this.airStripEmployeeNumber === 0
-    ) {
+  removeEmployee(cardNo: number): void {
+    if (this.airStripEmployeeNumber === 0) {
       throw new Error("There is no employee to remove").message.toUpperCase();
     } else {
       this.airStripEmployeeNumber--;
+      this.airStripZoneEmployeeCardInfo.forEach((value, index) => {
+        if (value.cardNo === cardNo) {
+          this.airStripZoneEmployeeCardInfo.splice(index, 1);
+          console.log(index);
+        }
+      });
     }
   }
   getEmployee(): Card[] {
