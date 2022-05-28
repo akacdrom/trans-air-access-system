@@ -6,6 +6,5 @@ export class OutsideZone extends ConcreteZone {
   }
   enterZone(): void {
     console.log(`Access granted, entered the ${this.zoneName} zone`);
-    this.outsideEmployeeNumber++;
   }
 }
