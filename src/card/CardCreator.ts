@@ -15,7 +15,7 @@ export class CardCreator {
     if (card.cardType === "manager" && card.cardNo < 100) {
       return new ManagerCard(card.cardNo, card.cardName, card.cardType);
     } else if (
-      card.cardType === "airstrip" &&
+      card.cardType === "airStrip" &&
       card.cardNo >= 100 &&
       card.cardNo < 200
     ) {
@@ -27,7 +27,7 @@ export class CardCreator {
     ) {
       return new SorterCard(card.cardNo, card.cardName, card.cardType);
     } else if (
-      card.cardType === "transport" &&
+      card.cardType === "transporter" &&
       card.cardNo >= 501 &&
       card.cardNo < 999
     ) {

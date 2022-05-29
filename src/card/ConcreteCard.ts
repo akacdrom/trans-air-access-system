@@ -5,7 +5,7 @@ export interface Card {
 }
 
 export class ConcreteCard implements Card {
-  cardName: string;
   cardNo: number;
+  cardName: string;
   cardType: string;
 }
