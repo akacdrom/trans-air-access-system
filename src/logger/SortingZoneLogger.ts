@@ -25,7 +25,6 @@ export class SortingZoneLogger implements EmployeeInteraction {
       this.sortingZoneEmployeeCardInfo.forEach((value, index) => {
         if (value.cardNo === cardNo) {
           this.sortingZoneEmployeeCardInfo.splice(index, 1);
-          console.log(index);
         }
       });
     }

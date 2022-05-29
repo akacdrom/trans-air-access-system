@@ -16,7 +16,7 @@ export class ZoneCreator {
   ): Zone {
     if (
       zone.zoneName === "AirStripZoneState" &&
-      (zone.zoneEmployeeCard === "airstrip" ||
+      (zone.zoneEmployeeCard === "airStrip" ||
         zone.zoneEmployeeCard === "manager")
     ) {
       const airStripZone = new AirStripZone(
@@ -28,7 +28,7 @@ export class ZoneCreator {
     } else if (
       zone.zoneName === "SortingZoneState" &&
       (zone.zoneEmployeeCard === "sorter" ||
-        zone.zoneEmployeeCard === "airstrip" ||
+        zone.zoneEmployeeCard === "airStrip" ||
         zone.zoneEmployeeCard === "manager" ||
         zone.zoneEmployeeCard === "janitor")
     ) {

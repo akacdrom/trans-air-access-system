@@ -1,17 +1,11 @@
-import { ZoneCreator } from "./zone/ZoneCreator";
-import { Door } from "./door/Door";
-import { OutsideZoneLogger } from "./logger/OutsideZoneLogger";
-import { LoadUnloadZoneLogger } from "./logger/LoadUnloadZoneLogger";
-import { SortingZoneLogger } from "./logger/SortingZoneLogger";
-import { StorageZoneLogger } from "./logger/StorageZoneLogger";
-import { AirStripZoneLogger } from "./logger/AirStripZoneLogger";
-import { Employee } from "./test/__Employee";
-
-const employees = new Employee();
-const employee = employees.employee();
-const employee2 = employees.employee2();
-const employee3 = employees.employee3();
-const employee4 = employees.employee4();
+import { ZoneCreator } from "../zone/ZoneCreator";
+import { Door } from "../door/Door";
+import { OutsideZoneLogger } from "../logger/OutsideZoneLogger";
+import { LoadUnloadZoneLogger } from "../logger/LoadUnloadZoneLogger";
+import { SortingZoneLogger } from "../logger/SortingZoneLogger";
+import { StorageZoneLogger } from "../logger/StorageZoneLogger";
+import { AirStripZoneLogger } from "../logger/AirStripZoneLogger";
+import { Employee } from "./__Employee";
 
 const outsideZoneLogger = new OutsideZoneLogger();
 const loadUnloadZoneLogger = new LoadUnloadZoneLogger();
@@ -19,18 +13,82 @@ const sortingZoneLogger = new SortingZoneLogger();
 const storageZoneLogger = new StorageZoneLogger();
 const airStripZoneLogger = new AirStripZoneLogger();
 
-defaultDoor(employee.zone, employee.card);
-defaultDoor(employee2.zone, employee2.card);
-defaultDoor(employee3.zone, employee3.card);
-defaultDoor(employee4.zone, employee4.card);
+class __Test {
+  //Move an employee card from the Outside zone to the Unloading/loading zone.
+  test() {
+    const employees = new Employee();
+    const employee = employees.employee();
+    defaultDoor(employee.zone, employee.card);
+    doorZero(employee.zone, employee.card, employee.door);
+  }
+  //Move a card from the Sorting zone to the Storage Zone.(It should start from outside zone,
+  //since there is no way to go to storage zone directly)
+  test2() {
+    const employees = new Employee();
+    const employee = employees.employee();
+    defaultDoor(employee.zone, employee.card);
+    doorZero(employee.zone, employee.card, employee.door);
+    doorThree(employee.zone, employee.card, employee.door);
+    doorSix(employee.zone, employee.card, employee.door);
+  }
+  //No more than 3 employees are in the Airstrip Zone
+  test3() {
+    const employees = new Employee();
+    const employee8 = employees.employee8();
+    const employee9 = employees.employee9();
+    const employee10 = employees.employee10();
 
-doorZero(employee.zone, employee.card, employee.door);
-doorZero(employee2.zone, employee2.card, employee2.door);
-doorZero(employee3.zone, employee3.card, employee3.door);
-doorZero(employee4.zone, employee4.card, employee4.door);
+    //It should work without problem.
+    defaultDoor(employee8.zone, employee8.card);
+    defaultDoor(employee9.zone, employee9.card);
+    defaultDoor(employee10.zone, employee10.card);
 
-//doorThree(employee.zone, employee.card, employee.door);
-//doorThree(employee2.zone, employee2.card, employee2.door);
+    doorZero(employee8.zone, employee8.card, employee8.door);
+    doorZero(employee9.zone, employee9.card, employee9.door);
+    doorZero(employee10.zone, employee10.card, employee10.door);
+
+    doorThree(employee8.zone, employee8.card, employee8.door);
+    doorThree(employee9.zone, employee9.card, employee9.door);
+    doorThree(employee10.zone, employee10.card, employee10.door);
+
+    doorFive(employee8.zone, employee8.card, employee8.door);
+    doorFive(employee9.zone, employee9.card, employee9.door);
+    doorFive(employee10.zone, employee10.card, employee10.door);
+
+    //It should give error.
+    const employee13 = employees.employee13();
+    defaultDoor(employee13.zone, employee13.card);
+    doorZero(employee13.zone, employee13.card, employee13.door);
+    doorThree(employee13.zone, employee13.card, employee13.door);
+    doorFive(employee13.zone, employee13.card, employee13.door);
+  }
+  test4() {
+    //Door will not allow entrance to a Janitor if there is no other employee in the Zone
+    //It should give error.
+    const employees = new Employee();
+    const employee2 = employees.employee2();
+    defaultDoor(employee2.zone, employee2.card);
+    doorZero(employee2.zone, employee2.card, employee2.door);
+  }
+  test5() {
+    //No Transport employee is allowed in the Sorter Zone
+    //It should give error
+    const employees = new Employee();
+    const employee11 = employees.employee11();
+    defaultDoor(employee11.zone, employee11.card);
+    doorZero(employee11.zone, employee11.card, employee11.door);
+    doorThree(employee11.zone, employee11.card, employee11.door);
+  }
+}
+const test = new __Test();
+test.test();
+test.test2();
+//test3 going to give error
+test.test3();
+//test4 going to give error
+test.test4();
+//test5 going to give error
+test.test5();
 
 function defaultDoor(
   zone: { zoneName: any; zoneEmployeeCard: string },

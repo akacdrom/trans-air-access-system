@@ -18,7 +18,7 @@ export class AirStripZone extends ConcreteZone {
     } else {
       throw new Error(
         `Limit is reached. Zone has ${this.zoneEmpCount} number of employees.`
-      );
+      ).message.toUpperCase();
     }
   }
 }

@@ -1,5 +1,5 @@
-import { CardCreator } from "./card/CardCreator";
-import { Door } from "./door/Door";
+import { CardCreator } from "../card/CardCreator";
+import { Door } from "../door/Door";
 
 export class Employee {
   // employee function to create objects of card, zone and zone
@@ -155,6 +155,19 @@ export class Employee {
       cardNo: 725,
       cardName: "Polly",
       cardType: "transporter",
+    });
+    const door = new Door();
+    const zone = {
+      zoneName: (<any>door.getCurrentState()).constructor.name,
+      zoneEmployeeCard: card.cardType,
+    };
+    return { card, door, zone };
+  }
+  employee13() {
+    const card = CardCreator.createCard({
+      cardNo: 190,
+      cardName: "Mike",
+      cardType: "airStrip",
     });
     const door = new Door();
     const zone = {

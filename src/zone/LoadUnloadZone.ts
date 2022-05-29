@@ -28,7 +28,7 @@ export class LoadUnloadZone extends ConcreteZone {
     } else {
       throw new Error(
         `Limit is reached. Zone has ${this.zoneEmpCount} number of employees.`.toUpperCase()
-      );
+      ).message.toUpperCase();
     }
   }
 }
