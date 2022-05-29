@@ -10,6 +10,8 @@ import { Employee } from "./__Employee";
 const employees = new Employee();
 const employee = employees.employee();
 const employee2 = employees.employee2();
+const employee3 = employees.employee3();
+const employee4 = employees.employee4();
 
 const outsideZoneLogger = new OutsideZoneLogger();
 const loadUnloadZoneLogger = new LoadUnloadZoneLogger();
@@ -19,18 +21,25 @@ const airStripZoneLogger = new AirStripZoneLogger();
 
 defaultDoor(employee.zone, employee.card);
 defaultDoor(employee2.zone, employee2.card);
+defaultDoor(employee3.zone, employee3.card);
+defaultDoor(employee4.zone, employee4.card);
 
 doorZero(employee.zone, employee.card, employee.door);
 doorZero(employee2.zone, employee2.card, employee2.door);
+doorZero(employee3.zone, employee3.card, employee3.door);
+doorZero(employee4.zone, employee4.card, employee4.door);
 
-doorThree(employee.zone, employee.card, employee.door);
-doorThree(employee2.zone, employee2.card, employee2.door);
+//doorThree(employee.zone, employee.card, employee.door);
+//doorThree(employee2.zone, employee2.card, employee2.door);
 
 function defaultDoor(
   zone: { zoneName: any; zoneEmployeeCard: string },
   card: { cardNo: number; cardName: string; cardType: string }
 ) {
-  const outsideZone = ZoneCreator.createZone(zone);
+  const outsideZone = ZoneCreator.createZone(
+    zone,
+    outsideZoneLogger.outsideEmployeeNumber
+  );
   outsideZone.enterZone();
   outsideZoneLogger.addEmployee(card);
   console.log("Current Zone Is: " + outsideZone.zoneName);
@@ -45,7 +54,10 @@ function doorZero(
 ) {
   door.getCurrentState().doorZero();
   zone.zoneName = (<any>door.getCurrentState()).constructor.name;
-  const loadUnloadZone = ZoneCreator.createZone(zone);
+  const loadUnloadZone = ZoneCreator.createZone(
+    zone,
+    loadUnloadZoneLogger.loadUnloadEmployeeNumber
+  );
   loadUnloadZone.enterZone();
   //remove the employee from outside zone logger
   outsideZoneLogger.removeEmployee(card.cardNo);
@@ -64,7 +76,10 @@ function doorThree(
 ) {
   door.getCurrentState().doorThree();
   zone.zoneName = (<any>door.getCurrentState()).constructor.name;
-  const sortingZone = ZoneCreator.createZone(zone);
+  const sortingZone = ZoneCreator.createZone(
+    zone,
+    sortingZoneLogger.sortingEmployeeNumber
+  );
   sortingZone.enterZone();
   //remove the employee from load/unload zone logger
   loadUnloadZoneLogger.removeEmployee(card.cardNo);
@@ -81,7 +96,10 @@ function doorSix(
 ) {
   door.getCurrentState().doorSix();
   zone.zoneName = (<any>door.getCurrentState()).constructor.name;
-  const storageZone = ZoneCreator.createZone(zone);
+  const storageZone = ZoneCreator.createZone(
+    zone,
+    storageZoneLogger.storageEmployeeNumber
+  );
   storageZone.enterZone();
   //remove the employee from sorting zone logger
   sortingZoneLogger.removeEmployee(card.cardNo);
@@ -98,7 +116,10 @@ function doorSeven(
 ) {
   door.getCurrentState().doorSeven();
   zone.zoneName = (<any>door.getCurrentState()).constructor.name;
-  const sortingZone = ZoneCreator.createZone(zone);
+  const sortingZone = ZoneCreator.createZone(
+    zone,
+    sortingZoneLogger.sortingEmployeeNumber
+  );
   sortingZone.enterZone();
   //remove the employee from storage zone logger
   storageZoneLogger.removeEmployee(card.cardNo);
@@ -115,7 +136,10 @@ function doorFive(
 ) {
   door.getCurrentState().doorFive();
   zone.zoneName = (<any>door.getCurrentState()).constructor.name;
-  const airStripZone = ZoneCreator.createZone(zone);
+  const airStripZone = ZoneCreator.createZone(
+    zone,
+    airStripZoneLogger.airStripEmployeeNumber
+  );
   airStripZone.enterZone();
   //remove the employee from sorting zone logger
   sortingZoneLogger.removeEmployee(card.cardNo);
@@ -132,7 +156,10 @@ function doorFour(
 ) {
   door.getCurrentState().doorFour();
   zone.zoneName = (<any>door.getCurrentState()).constructor.name;
-  const sortingZone = ZoneCreator.createZone(zone);
+  const sortingZone = ZoneCreator.createZone(
+    zone,
+    sortingZoneLogger.sortingEmployeeNumber
+  );
   sortingZone.enterZone();
   //remove the employee from air-strip zone logger
   airStripZoneLogger.removeEmployee(card.cardNo);
@@ -149,7 +176,10 @@ function doorTwo(
 ) {
   door.getCurrentState().doorTwo();
   zone.zoneName = (<any>door.getCurrentState()).constructor.name;
-  const loadUnloadZone = ZoneCreator.createZone(zone);
+  const loadUnloadZone = ZoneCreator.createZone(
+    zone,
+    loadUnloadZoneLogger.loadUnloadEmployeeNumber
+  );
   loadUnloadZone.enterZone();
   //remove the employee from sorting zone logger
   sortingZoneLogger.removeEmployee(card.cardNo);
@@ -168,7 +198,10 @@ function doorOne(
 ) {
   door.getCurrentState().doorOne();
   zone.zoneName = (<any>door.getCurrentState()).constructor.name;
-  const outsideZone = ZoneCreator.createZone(zone);
+  const outsideZone = ZoneCreator.createZone(
+    zone,
+    outsideZoneLogger.outsideEmployeeNumber
+  );
   outsideZoneLogger.addEmployee(card);
   outsideZone.enterZone();
   //remove the employee from load/unload zone logger

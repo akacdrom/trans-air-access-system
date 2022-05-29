@@ -20,7 +20,6 @@ export class OutsideZoneLogger implements EmployeeInteraction {
       this.outsideZoneEmployeeCardInfo.forEach((value, index) => {
         if (value.cardNo === cardNo) {
           this.outsideZoneEmployeeCardInfo.splice(index, 1);
-          console.log(index);
         }
       });
     }

@@ -20,7 +20,6 @@ export class LoadUnloadZoneLogger implements EmployeeInteraction {
       this.loadUnloadZoneEmployeeCardInfo.forEach((value, index) => {
         if (value.cardNo === cardNo) {
           this.loadUnloadZoneEmployeeCardInfo.splice(index, 1);
-          console.log(index);
         }
       });
     }
