@@ -1,7 +1,7 @@
 import { CardCreator } from "./card/CardCreator";
 import { Door } from "./door/Door";
 
-export class Employees {
+export class Employee {
   // employee function to create objects of card, zone and zone
   employee() {
     const card = CardCreator.createCard({
