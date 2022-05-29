@@ -14,7 +14,17 @@ export class StorageZone extends ConcreteZone {
   }
   enterZone(): void {
     if (this.zoneEmpCount < 3) {
-      console.log(`Access granted, entered the ${this.zoneName} zone`);
+      if (
+        (this.zoneEmployeeCard === "janitor" &&
+          StorageZoneLogger.getNonJanitorPresent()) ||
+        this.zoneEmployeeCard !== "janitor"
+      ) {
+        console.log(`Access granted, entered the ${this.zoneName} zone`);
+      } else {
+        throw new Error(
+          "Janitor access denied!\nJanitor cannot be alone, or only with janitor in the same zone"
+        ).message.toUpperCase();
+      }
     } else {
       throw new Error(
         `Limit is reached. Zone has ${this.zoneEmpCount} number of employees.`

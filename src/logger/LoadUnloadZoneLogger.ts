@@ -3,7 +3,7 @@ import { Card, EmployeeInteraction } from "./EmployeeInteraction";
 export class LoadUnloadZoneLogger implements EmployeeInteraction {
   loadUnloadZoneEmployeeCardInfo: Card[] = [];
   loadUnloadEmployeeNumber = 0;
-
+  static isNonJanitorPresent = false;
   addEmployee(cardInfo: {
     cardNo: number;
     cardName: string;
@@ -11,6 +11,9 @@ export class LoadUnloadZoneLogger implements EmployeeInteraction {
   }): void {
     this.loadUnloadEmployeeNumber++;
     this.loadUnloadZoneEmployeeCardInfo.push(cardInfo);
+    if (cardInfo.cardType !== "janitor") {
+      this.setNonJanitorPresent(true);
+    }
   }
   removeEmployee(cardNo: number): void {
     if (this.loadUnloadEmployeeNumber === 0) {
@@ -26,5 +29,11 @@ export class LoadUnloadZoneLogger implements EmployeeInteraction {
   }
   getEmployee(): Card[] {
     return this.loadUnloadZoneEmployeeCardInfo;
+  }
+  setNonJanitorPresent(status: boolean) {
+    LoadUnloadZoneLogger.isNonJanitorPresent = status;
+  }
+  static getNonJanitorPresent() {
+    return LoadUnloadZoneLogger.isNonJanitorPresent;
   }
 }
