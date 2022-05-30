@@ -5,7 +5,7 @@ import { LoadUnloadZoneLogger } from "./logger/LoadUnloadZoneLogger";
 import { SortingZoneLogger } from "./logger/SortingZoneLogger";
 import { StorageZoneLogger } from "./logger/StorageZoneLogger";
 import { AirStripZoneLogger } from "./logger/AirStripZoneLogger";
-import { Employee } from "./test/__Employee";
+import { Employee } from "./__test/__Employee";
 
 const employees = new Employee();
 const employee = employees.employee();
