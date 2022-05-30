@@ -29,8 +29,10 @@ doorZero(employee2.zone, employee2.card, employee2.door);
 doorZero(employee3.zone, employee3.card, employee3.door);
 doorZero(employee4.zone, employee4.card, employee4.door);
 
-//doorThree(employee.zone, employee.card, employee.door);
-//doorThree(employee2.zone, employee2.card, employee2.door);
+doorThree(employee.zone, employee.card, employee.door);
+doorThree(employee2.zone, employee2.card, employee2.door);
+
+doorSix(employee.zone, employee.card, employee.door);
 
 function defaultDoor(
   zone: { zoneName: any; zoneEmployeeCard: string },
